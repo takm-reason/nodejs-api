@@ -7,17 +7,15 @@ const tickets = () => {
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
+  res.render('index', { title: 'Express' });
+});
+
+router.get('/tickets', function(req, res, next) {
   tickets().getTickets((err, results) => {
     if (err) {
-      return res.render('index', {
-        title: 'Express',
-        results: ['no tickets']
-      })
+      res.status(403).json(err)
     } else {
-      return res.render('index', {
-        title: 'Express',
-        tickets: results
-      });
+      res.status(200).json(results)
     }
   })
 });

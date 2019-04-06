@@ -3,12 +3,3 @@ extends layout
 block content
   h1= title
   p Welcome to #{title}
-  each ticket in tickets
-    ul
-      li #{ticket.id}
-      li #{ticket.name}
-      li #{ticket.comment}
-      li #{ticket.insert_time}
-      li #{ticket.update_time}
-      li #{ticket.deleted}
-      
