@@ -16,6 +16,20 @@ const getTickets = (cb) => {
   })
 }
 
+const getTicket = (id, cb) => {
+  const sql = 'SELECT * FROM tickets WHERE deleted = 0 AND id = ?'
+  mysql.query(sql, id, (err, results) => {
+    if (err){
+      return cb(err, null)
+    }
+    if (results.length == 0){
+      return cb(null, null)
+    }
+    return cb(null, results)
+  })
+}
+
 module.exports = {
   getTickets,
+  getTicket,
 };

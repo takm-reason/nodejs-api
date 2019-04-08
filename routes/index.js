@@ -20,4 +20,14 @@ router.get('/tickets', function(req, res, next) {
   })
 });
 
+router.get('/tickets/:id', function(req, res, next) {
+  tickets().getTicket(req.params.id, (err, results) => {
+    if (err) {
+      res.status(403).json(err)
+    } else {
+      res.status(200).json(results)
+    }
+  })
+});
+
 module.exports = router;
