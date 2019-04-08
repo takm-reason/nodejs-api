@@ -22,8 +22,15 @@ const getTicket = (id, cb) => {
     if (err){
       return cb(err, null)
     }
-    if (results.length == 0){
-      return cb(null, null)
+    return cb(null, results)
+  })
+}
+
+const postTicket = (values, cb) => {
+  const sql = 'INSERT INTO tickets SET ?'
+  mysql.query(sql, values, (err, results) => {
+    if (err){
+      return cb(err, null)
     }
     return cb(null, results)
   })
@@ -32,4 +39,5 @@ const getTicket = (id, cb) => {
 module.exports = {
   getTickets,
   getTicket,
+  postTicket
 };
