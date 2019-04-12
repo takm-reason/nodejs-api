@@ -35,4 +35,14 @@ router.post('/', (req, res, next) => {
   })
 });
 
+router.put('/:id', (req, res, next) => {
+  tickets().putTicket(req.params.id, req.body, (err, results) => {
+    if (err) {
+      res.status(403).json(err)
+    } else {
+      res.status(200).json(results)
+    }
+  })
+});
+
 module.exports = router;

@@ -36,8 +36,19 @@ const postTicket = (values, cb) => {
   })
 }
 
+const putTicket = (id, values, cb) => {
+  const sql = 'UPDATE tickets SET ? WHERE id = ?'
+  mysql.query(sql, [values, id], (err, results) => {
+    if (err){
+      return cb(err, null)
+    }
+    return cb(null, results)
+  })
+}
+
 module.exports = {
   getTickets,
   getTicket,
-  postTicket
+  postTicket,
+  putTicket
 };
