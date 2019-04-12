@@ -1,11 +1,11 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
 const tickets = () => {
   return require('../models/tickets');
 };
 
-router.get('/', function(req, res, next) {
+router.get('/', (req, res, next) => {
   tickets().getTickets((err, results) => {
     if (err) {
       res.status(403).json(err)
@@ -15,7 +15,7 @@ router.get('/', function(req, res, next) {
   })
 });
 
-router.get('/:id', function(req, res, next) {
+router.get('/:id', (req, res, next) => {
   tickets().getTicket(req.params.id, (err, results) => {
     if (err) {
       res.status(403).json(err)
@@ -25,7 +25,7 @@ router.get('/:id', function(req, res, next) {
   })
 });
 
-router.post('/', function(req, res, next) {
+router.post('/', (req, res, next) => {
   tickets().postTicket(req.body, (err, results) => {
     if (err) {
       res.status(403).json(err)
