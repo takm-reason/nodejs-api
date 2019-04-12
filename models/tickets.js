@@ -46,9 +46,20 @@ const putTicket = (id, values, cb) => {
   })
 }
 
+const deleteTicket = (id, cb) => {
+  const sql = 'UPDATE tickets SET deleted = 1 WHERE id = ?'
+  mysql.query(sql, id, (err, results) => {
+    if (err){
+      return cb(err, null)
+    }
+    return cb(null, results)
+  })
+}
+
 module.exports = {
   getTickets,
   getTicket,
   postTicket,
-  putTicket
+  putTicket,
+  deleteTicket
 };

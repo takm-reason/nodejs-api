@@ -45,4 +45,14 @@ router.put('/:id', (req, res, next) => {
   })
 });
 
+router.delete('/:id', (req, res, next) => {
+  tickets().deleteTicket(req.params.id, (err, results) => {
+    if (err) {
+      res.status(403).json(err)
+    } else {
+      res.status(200).json(results)
+    }
+  })
+});
+
 module.exports = router;
